@@ -1,4 +1,10 @@
 # Gridly Unity プラグイン
+
+<p align="center">
+  <a href="README-en.md">English</a> •
+  <a href="README-ja.md">Japanese</a> •  
+</p>
+
 ### 1. このプラグインでできること
 このプラグインは、Unity と Gridly 間のデータ同期を支援します。
 Unity で生成されたスクリーンショットのアップロード機能もあります。

@@ -1,4 +1,11 @@
 # GRIDLY PLUGIN
+
+<p align="center">
+  <a href="README-en.md">English</a> •
+  <a href="README-ja.md">日本語 (Japanese)</a> •  
+</p>
+
+
 ### 1. What does this plugin do?
 This Plugin aids with syncing data between Unity and Gridly.
 This includes the uploading of screenshots generated from Unity.
