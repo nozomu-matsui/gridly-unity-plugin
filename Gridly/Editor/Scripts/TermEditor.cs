@@ -88,7 +88,7 @@ namespace Gridly.Internal
             popupData.RefeshAll(gridSelect, null);
             RefeshList();
             paths = getSceneList().ToArray();
-            Debug.Log("record count " + records.Count);
+            Debug.Log("レコード数 " + records.Count);
         }
         static void RefeshList()
         {
@@ -273,9 +273,9 @@ namespace Gridly.Internal
             GUILayout.Space(5);
             GUILayout.BeginHorizontal(GUILayout.ExpandHeight(true));
 
-            if (GUILayout.Button(new GUIContent() { text = "Pull selected Grid", tooltip = "Pull data of this grid from Gridly" }))
+            if (GUILayout.Button(new GUIContent() { text = "選択したグリッドをプル", tooltip = "Gridlyから選択したグリッドのデータをプル" }))
             {
-                if (EditorUtility.DisplayDialog("Confirm Import Grid", "Are you sure you want to import Grid from Gridly?. It will overwrite the old data including translations.", "Yes", "Cancel"))
+                if (EditorUtility.DisplayDialog("グリッドのインポート確認", "Are you sure you want to import Grid from Gridly?. It will overwrite the old data including translations.", "Yes", "Cancel"))
                 {
                     popupData.grid.records.Clear();
                     Refesh();
@@ -289,9 +289,9 @@ namespace Gridly.Internal
                 }
             }
 
-            if (GUILayout.Button(new GUIContent() { text = "Pull all Grids", tooltip = "Pull all data from Gridly to update grids you have in unity" }))
+            if (GUILayout.Button(new GUIContent() { text = "すべてのグリッドをプル", tooltip = "Gridlyのすべてのデータをし、Unityのグリッドを更新" }))
             {
-                if (EditorUtility.DisplayDialog("Confirm Export", "Are you sure you want to import all data from Gridly?. It will overwrite the old data including translations.", "Yes", "Cancel"))
+                if (EditorUtility.DisplayDialog("エクスポート確認", "本当に Gridly からすべてのデータをインポートしますか？ この操作は、翻訳を含む古いデータを上書きします。", "はい", "キャンセル"))
                 {
                     GridlyFunctionEditor.editor.doneOneProcess += Refesh;
                     GridlyFunctionEditor.editor.doneOneProcess += RepaintThis;
@@ -301,7 +301,7 @@ namespace Gridly.Internal
 
 
             GenericMenu menu = new GenericMenu();
-            menu.AddItem(new GUIContent("Language screenshots/All target language screenshots"), Project.singleton.DataToSendSelectedItems.Contains("All target language screenshots"), OnColorSelected, "All target language screenshots");
+            menu.AddItem(new GUIContent("言語スクリーンショット / 全ターゲット言語スクリーンショット"), Project.singleton.DataToSendSelectedItems.Contains("全ターゲット言語スクリーンショット"), OnColorSelected, "全ターゲット言語スクリーンショット");
 
             foreach (string data in Project.singleton.DataToSendSelectedItems.ToList())
             {
@@ -321,7 +321,7 @@ namespace Gridly.Internal
                 {
                     if (item != UserData.singleton.mainLangEditor.ToString())
                     {
-                        menu.AddItem(new GUIContent("Language screenshots/" + item), Project.singleton.DataToSendSelectedItems.Contains(item), OnColorSelected, item);
+                        menu.AddItem(new GUIContent("言語スクリーンショット /" + item), Project.singleton.DataToSendSelectedItems.Contains(item), OnColorSelected, item);
                     }
                 }
             }
@@ -329,20 +329,20 @@ namespace Gridly.Internal
 
 
 
-            if (EditorGUILayout.DropdownButton(new GUIContent() { text = "Push options", tooltip = "Select the languages to send their screenshots to gridly." }, 0, EditorStyles.miniButton))
+            if (EditorGUILayout.DropdownButton(new GUIContent() { text = "プッシュオプション", tooltip = "Gridly に送信するスクリーンショットの言語を選択" }, 0, EditorStyles.miniButton))
             {
                 menu.ShowAsContext();
             }
 
 
-            if (GUILayout.Button(new GUIContent() { text = "Push data", tooltip = "Push source strings and screenshots with selected languages to Grdily" }))
+            if (GUILayout.Button(new GUIContent() { text = "データをプッシュ", tooltip = "ソース文字列と選択された言語のスクリーンショットを Gridly にプッシュ" }))
             {
-                string msg = "You are going to push data with these settings:\n";
+                string msg = "以下の設定でデータをプッシュしようとしています。\n";
                 foreach (string data in Project.singleton.DataToSendSelectedItems)
                 {
                     if (data.Length == 4)
                     {
-                        if (!Project.singleton.DataToSendSelectedItems.Contains("All target language screenshots"))
+                        if (!Project.singleton.DataToSendSelectedItems.Contains("全ターゲット言語スクリーンショット"))
                             msg += "- " + data + " screenshots" + "\n";
                     }
                     else
@@ -350,7 +350,7 @@ namespace Gridly.Internal
                         msg += "- " + data + "\n";
                     }
                 }
-                if (EditorUtility.DisplayDialog("Push data to Gridly", msg, "OK", "Cancel"))
+                if (EditorUtility.DisplayDialog("Gridly にデータをプッシュ", msg, "はい", "キャンセル"))
                 {
                     GridlyFunctionEditor.editor.AddUpdateRecordAll(popupData.grid.records, popupData.grid.choesenViewID, false, true);
                 }
@@ -360,7 +360,7 @@ namespace Gridly.Internal
             GUILayout.BeginHorizontal();
             EditorGUI.BeginChangeCheck();
             GUILayout.FlexibleSpace();
-            Project.singleton.SendIfChanged = GUILayout.Toggle(Project.singleton.SendIfChanged, new GUIContent { text = "Push only changed records", tooltip = "Send records that has been changed in Unity to Gridly." });
+            Project.singleton.SendIfChanged = GUILayout.Toggle(Project.singleton.SendIfChanged, new GUIContent { text = "変更されたレコードのみプッシュ", tooltip = "Unity で変更されたレコードのみを、Gridly に送信" });
             if (EditorGUI.EndChangeCheck())
                 Project.singleton.setDirty();
             GUILayout.EndHorizontal();
@@ -374,12 +374,12 @@ namespace Gridly.Internal
         {
             string selectedText = selectedDataItem.ToString();
 
-            if (selectedText.Length == 4 && Project.singleton.DataToSendSelectedItems.Contains("All target language screenshots"))
+            if (selectedText.Length == 4 && Project.singleton.DataToSendSelectedItems.Contains("全ターゲット言語スクリーンショット"))
             {
-                Project.singleton.DataToSendSelectedItems.Remove("All target language screenshots");
+                Project.singleton.DataToSendSelectedItems.Remove("全ターゲット言語スクリーンショット");
             }
 
-            if (selectedText == "All target language screenshots")
+            if (selectedText == "全ターゲット言語スクリーンショット")
             {
                 bool allLangAdded = true;
                 foreach (LangSupport lang in Project.singleton.langSupports)
@@ -459,7 +459,7 @@ namespace Gridly.Internal
                 nameNewKey = EditorGUILayout.TextField(nameNewKey, EditorStyles.toolbarTextField, GUILayout.ExpandWidth(true));
                 GUILayout.EndHorizontal();
 
-                if (GUILayout.Button("Create Record", "toolbarbutton", GUILayout.ExpandWidth(false)))
+                if (GUILayout.Button("レコードを作成", "toolbarbutton", GUILayout.ExpandWidth(false)))
                 {
 
 
@@ -564,7 +564,7 @@ namespace Gridly.Internal
             {
                 selectedIndex = ArrayUtility.IndexOf(paths, record.pathTag);
             }
-            pathSelectedIndex = EditorGUILayout.Popup("Path", selectedIndex, paths);
+            pathSelectedIndex = EditorGUILayout.Popup("パス", selectedIndex, paths);
             pathSelect = paths[pathSelectedIndex];
             if (EditorGUI.EndChangeCheck())
             {
@@ -585,7 +585,7 @@ namespace Gridly.Internal
                 if (i.languagesSuport == UserData.singleton.mainLangEditor)
                 {
                     name = "*" + name;
-                    contenLabel = new GUIContent() { text = name, tooltip = "This is the source language" };
+                    contenLabel = new GUIContent() { text = name, tooltip = "これはソース言語です" };
                 }
                 else contenLabel = new GUIContent() { text = name };
 
@@ -615,7 +615,7 @@ namespace Gridly.Internal
                     }
                     else
                     {
-                        Debug.Log("you cannot edit this field because there is no column " + i.languagesSuport + " on Gridly. To fix this please login to Gridly and add column with columnID as \"" + i.languagesSuport + "\"");
+                        Debug.Log(i.languagesSuport + "カラムが Gridly に存在しないため、このフィールドは編集できません。修正するためには、Gridly にログインしてカラムIDを\"" + i.languagesSuport + "\" で追加してください。");
                     }
                 }
 
@@ -655,9 +655,9 @@ namespace Gridly.Internal
             #region delete, rename
             GUILayout.BeginHorizontal();
 
-            if (GUILayout.Button("Delete"))
+            if (GUILayout.Button("削除"))
             {
-                if (EditorUtility.DisplayDialog("Confirm delete", "Are you sure you want to delete this record", "Yes", "Cancel"))
+                if (EditorUtility.DisplayDialog("削除確認", "本当にこのレコードを削除しますか？", "はい", "キャンセル"))
                 {
                     EditorUtility.SetDirty(UserData.singleton);
                     GridlyFunctionEditor.editor.DeleteRecord(record.recordID, grid.choesenViewID, null);
@@ -669,7 +669,7 @@ namespace Gridly.Internal
             }
 
 
-            if (GUILayout.Button("Rename"))
+            if (GUILayout.Button("改名"))
             {
                 isRename = !isRename;
             }
