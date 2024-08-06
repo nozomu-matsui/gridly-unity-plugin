@@ -97,7 +97,7 @@ public class initiateCaptures : MonoBehaviour
             Directory.CreateDirectory(screenshotDirPath);
         }
         string filename = screenshotDirPath + "\\" + levelname + ".png";
-        ScreenCapture.CaptureScreenshot(filename, superSize);
+        UnityEditor.ScreenCapture.CaptureScreenshot(filename, superSize);
 
     }
 
