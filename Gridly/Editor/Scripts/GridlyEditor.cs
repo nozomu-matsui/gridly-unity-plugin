@@ -105,7 +105,7 @@ namespace Gridly.Internal
         {
             await initGridlyColumns();
             InitData();
-            window = (GridlySetting)GetWindow(typeof(GridlySetting), true, "Gridly Setting Window - " + GridlyInfo.ver);
+            window = (GridlySetting)GetWindow(typeof(GridlySetting), true, "Gridly セットアップ ウィンドウ - " + GridlyInfo.ver);
             Vector2 vector2 = new Vector2(600, 500);
             window.minSize = vector2;
             window.maxSize = vector2;
@@ -120,7 +120,7 @@ namespace Gridly.Internal
         [MenuItem("Tools/Gridly/Export/Export All", false, 100)]
         private static void ExportAll()
         {
-            if (EditorUtility.DisplayDialog("Confirm Export", "Are you sure you want to export everything to Gridly?. It will overwrite the old data including translations.", "Yes", "Cancel"))
+            if (EditorUtility.DisplayDialog("エクスポート確認", "本当にすべてを Gridly にエクスポートしますか？ この操作は、翻訳を含む古いデータを上書きします。", "はい", "キャンセル"))
             {
                 foreach (var i in Project.singleton.grids)
                 {
@@ -193,8 +193,8 @@ namespace Gridly.Internal
             GUILayout.Space(10);
 
             GUILayout.BeginHorizontal();
-            OnGUI_ToggleEnumBig("Gridly Setup", ref mCurrentViewMode, eViewMode.Setting, null, null);
-            OnGUI_ToggleEnumBig("Languages", ref mCurrentViewMode, eViewMode.Languages, null, null);
+            OnGUI_ToggleEnumBig("Gridly セットアップ", ref mCurrentViewMode, eViewMode.Setting, null, null);
+            OnGUI_ToggleEnumBig("言語", ref mCurrentViewMode, eViewMode.Languages, null, null);
 
             GUILayout.EndHorizontal();
 
@@ -206,7 +206,7 @@ namespace Gridly.Internal
             {
                 if (Project.singleton.grids == null)
                 {
-                    Debug.LogError("You don't have any grids added to your project.");
+                    Debug.LogError("グリッドがプロジェクトに追加されていません。");
                     return;
                 }
                 else
@@ -225,7 +225,7 @@ namespace Gridly.Internal
 
 
 
-            GUILayout.Label("Enter your API key here:", EditorStyles.boldLabel);
+            GUILayout.Label("API キーを入力してください", EditorStyles.boldLabel);
 
             EditorGUI.BeginChangeCheck();
             string _APIkey = EditorGUILayout.PasswordField(UserData.singleton.keyAPI);
@@ -236,7 +236,7 @@ namespace Gridly.Internal
 
             }
 
-            GUILayout.Label("Enter screenshots root folder here:", EditorStyles.boldLabel);
+            GUILayout.Label("スクリーンショット格納フォルダーを入力してください", EditorStyles.boldLabel);
 
             EditorGUI.BeginChangeCheck();
             string screenshotPath = EditorGUILayout.TextField(UserData.singleton.screenshotPath);
@@ -251,7 +251,7 @@ namespace Gridly.Internal
 
             #region viewID
             GUILayout.Space(10);
-            GUILayout.Label("Enter your ViewID here:", EditorStyles.boldLabel);
+            GUILayout.Label("ViewID を入力してください", EditorStyles.boldLabel);
             m_Scroll = GUILayout.BeginScrollView(m_Scroll, TextStyle, GUILayout.Height(150));
 
             Grid removeGrid = null;
@@ -298,7 +298,7 @@ namespace Gridly.Internal
 
             GUILayout.Space(10);
             EditorGUI.BeginChangeCheck();
-            UserData.singleton.showServerMess = GUILayout.Toggle(UserData.singleton.showServerMess, "Print server messages to the console");
+            UserData.singleton.showServerMess = GUILayout.Toggle(UserData.singleton.showServerMess, "サーバーメッセージをコンソールに表示する");
             if (EditorGUI.EndChangeCheck())
                 UserData.singleton.setDirty();
 
@@ -306,8 +306,8 @@ namespace Gridly.Internal
             if (GridlyFunctionEditor.isDowloading)
             {
                 GUILayout.BeginHorizontal();
-                GUILayout.Label("Dowloading...");
-                if (GUILayout.Button("Cancel", GUILayout.Width(50)))
+                GUILayout.Label("ダウンロードしています...");
+                if (GUILayout.Button("キャンセル", GUILayout.Width(50)))
                 {
                     GridlyFunctionEditor.editor.RefeshDowloadTotal();
                     EditorApplication.update = null;
@@ -318,8 +318,8 @@ namespace Gridly.Internal
 
             //setup
             GUILayout.Space(10);
-            EditorGUILayout.HelpBox("Download and setup all data", MessageType.Info);
-            if (GUILayout.Button(new GUIContent() { text = "Import All", tooltip = "Download all data from Gridly" }))
+            EditorGUILayout.HelpBox("すべでのデータをダウンロードしてセットアップ", MessageType.Info);
+            if (GUILayout.Button(new GUIContent() { text = "すべてインポート", tooltip = "Gridly からすべでのデータダウンロード" }))
             {
 
                 GridlyFunctionEditor.editor.doneOneProcess += TermEditor.Refesh;
@@ -329,9 +329,9 @@ namespace Gridly.Internal
             }
 
             GUILayout.Space(10);
-            if (GUILayout.Button("Clear local data"))
+            if (GUILayout.Button("ローカルデータをクリア"))
             {
-                if (EditorUtility.DisplayDialog("Confirm delete", "Are you sure you want to delete the local data", "Yes", "Cancel"))
+                if (EditorUtility.DisplayDialog("ローカルデータ削除確認", "本当にローカルデータを削除しますか？", "はい", "キャンセル"))
                 {
                     try
                     {
@@ -379,9 +379,9 @@ namespace Gridly.Internal
                     EditorGUI.BeginChangeCheck();
                     string name = langSupport.name;
                     int selectedIndexOfColumn = ArrayUtility.IndexOf(listGridlyColumnIds, langSupport.name);
-                    selectedIndexOfColumn = EditorGUILayout.Popup(new GUIContent("Column ID in Gridly", "Select columnId from Gridly for this language."), selectedIndexOfColumn, listGridlyColumnIds);
+                    selectedIndexOfColumn = EditorGUILayout.Popup(new GUIContent("Column ID in Gridly", "この言語の columnId を Gridly から選択してください。"), selectedIndexOfColumn, listGridlyColumnIds);
 
-                    if (GUILayout.Button(new GUIContent() { text = "Set source", tooltip = "Set this language as main language in editor" }))
+                    if (GUILayout.Button(new GUIContent() { text = "ソース言語を設定", tooltip = "この言語をエディターでのメイン言語にする" }))
                     {
                         TermEditor.Refesh();
                         TermEditor.RepaintThis();
@@ -391,7 +391,7 @@ namespace Gridly.Internal
                         UserData.singleton.setDirty();
                     }
 
-                    langSupport.languagesSuport = (Languages)EditorGUILayout.EnumPopup("Select Langauge", langSupport.languagesSuport);
+                    langSupport.languagesSuport = (Languages)EditorGUILayout.EnumPopup("言語選択", langSupport.languagesSuport);
 
                     if (EditorGUI.EndChangeCheck() && !string.IsNullOrEmpty(name))
                     {
@@ -429,10 +429,10 @@ namespace Gridly.Internal
                     {
                         selectedIndex = ArrayUtility.IndexOf(listGridlyColumnIds, langSupport.screenshotColumnId);
                     }
-                    columnIdSelectedIndex = EditorGUILayout.Popup("Screenshot column ID", selectedIndex, listGridlyColumnIds);
+                    columnIdSelectedIndex = EditorGUILayout.Popup("スクリーンショットカラムID", selectedIndex, listGridlyColumnIds);
                     columnIdSelect = listGridlyColumnIds[columnIdSelectedIndex];
 
-                    if (GUILayout.Button(new GUIContent() { text = "Generate column", tooltip = "Generate column for screenshot" }))
+                    if (GUILayout.Button(new GUIContent() { text = "カラムを生成", tooltip = "スクリーンショット格納用カラムを生成" }))
                     {
                         viewID = "";
                         foreach (var view in Project.singleton.grids)
@@ -471,7 +471,7 @@ namespace Gridly.Internal
                     if (deleteIndex != -1)
                     {
 
-                        if (EditorUtility.DisplayDialog("Confirm delete", "Are you sure you want to delete the selected language", "Yes", "Cancel"))
+                        if (EditorUtility.DisplayDialog("削除確認", "本当に選択した言語を削除しますか？", "はい", "キャンセル"))
                         {
 
 
@@ -491,7 +491,7 @@ namespace Gridly.Internal
 
 
                         }
-                        if (EditorUtility.DisplayDialog("Confirm delete column from Gridly", "Are you sure you want to delete the selected column from Gridly", "Yes", "Cancel"))
+                        if (EditorUtility.DisplayDialog("Gridly からのカラム削除を確認", "本当に選択したカラムを Gridly から削除しますか？", "はい", "キャンセル"))
                         {
                             await GridlyFunctionEditor.deleteGridlyColumn(viewID, idToDelete);
                             await GridlyFunctionEditor.deleteGridlyColumn(viewID, idToDelete + "_Screenshot");
@@ -511,8 +511,8 @@ namespace Gridly.Internal
 
             GUILayout.BeginHorizontal();
             List<string> final = listLanguage.FindAll(x => x.Contains(search));
-            selectLang = EditorGUILayout.Popup("Select language", selectLang, final.ToArray(), EditorStyles.toolbarDropDown);
-            if (GUILayout.Button("Add"))
+            selectLang = EditorGUILayout.Popup("言語選択", selectLang, final.ToArray(), EditorStyles.toolbarDropDown);
+            if (GUILayout.Button("追加"))
             {
                 Languages language = (Languages)System.Enum.Parse(typeof(Languages), final[selectLang]);
                 if (listGridlyColumnIds.Length > 0)
