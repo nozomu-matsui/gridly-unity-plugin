@@ -26,7 +26,7 @@ namespace Gridly.Internal
 
         public static async Task getGridlyColumnIds(string viewID)
         {
-            Debug.Log("Getting columnIds from Gridly server from view: " + viewID);
+            Debug.Log("Gridly サーバーのビュー " + viewID + " からカラムIDを取得しています...");
 
                 using (UnityWebRequest webRequest = UnityWebRequest.Get("https://api.gridly.com/v1/views/" + viewID))
                 {
@@ -41,7 +41,7 @@ namespace Gridly.Internal
                     if (webRequest.result == UnityWebRequest.Result.Success)
                     {
                         GridlyEditor.gridlyResponse = webRequest.downloadHandler.text;
-                        Debug.Log("ColumnIds fetched from Gridly server!");
+                        Debug.Log("カラムIDを Gridly サーバーから取得しました！");
                     }
                     else
                     {
@@ -91,7 +91,7 @@ namespace Gridly.Internal
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Column for screenshots with name: " + columnIdAndName + " has been created.");
+                Debug.Log("スクリーンショット格納用カラムが " + columnIdAndName + " という名前で作成されました。");
                 return columnIdAndName;
             }
             else
@@ -122,7 +122,7 @@ namespace Gridly.Internal
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Column deleted with ID: " + columnId + " has been deleted.");
+                Debug.Log("カラムID " + columnId + " が削除されました。");
             }
             else
             {
@@ -167,7 +167,7 @@ namespace Gridly.Internal
 
                 if (webRequest.result == UnityWebRequest.Result.Success)
                 {
-                    Debug.Log("Screenshot uploaded to column: " + columnIdAndName + " and record: " + recordId);
+                    Debug.Log("スクリーンショットがカラム " + columnIdAndName + " にアップロードされ、" + recordId + " レコードが保存されました。");
                 }
                 else
                 {
@@ -198,7 +198,7 @@ namespace Gridly.Internal
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Screenshot record with ID: " + recordId + " cleared.");
+                Debug.Log("スクリーンショットレコード " + recordId + " がクリアされました。");
             }
             else
             {
@@ -274,7 +274,7 @@ namespace Gridly.Internal
         {
             List<GridlyRecord.Records> gridlyRecords = new List<GridlyRecord.Records>();
 
-            Debug.Log("Getting columnIds from Gridly server.");
+            Debug.Log("Gridly サーバーからカラムIDを取得しています...");
 
             using (UnityWebRequest webRequest = UnityWebRequest.Get("https://api.gridly.com/v1/views/" + viewID + "/records?columnIds=" + columnID))
             {
@@ -289,7 +289,7 @@ namespace Gridly.Internal
                 {
                     Debug.Log("GetSourceCol: " + webRequest.downloadHandler.text);
                     gridlyRecords = JsonConvert.DeserializeObject<List<GridlyRecord.Records>>(webRequest.downloadHandler.text);
-                    Debug.Log("ColumnIds fetched from Gridly server!");
+                    Debug.Log("カラムIDを Gridly サーバーから取得しました！");
                 }
                 else
                 {
@@ -457,14 +457,14 @@ namespace Gridly.Internal
             //a.Print();
             if (recordsToSend > 0)
             {
-                Debug.Log("Sending " + recordsToSend + " records to gridly.");
+                Debug.Log(recordsToSend + " レコードを Gridly に送信しています...");
                 //Debug.LogError(a);
 
                 AddUpdateRecord(a, viewID, isAdd);
             }
             else
             {
-                Debug.Log("No records to send.");
+                Debug.Log("送信するレコードがありません。");
             }
         }
 
@@ -517,7 +517,7 @@ namespace Gridly.Internal
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Dependency created.");
+                Debug.Log("依存関係が作成されました。");
                 return webRequest.result.ToString();
             }
             else
