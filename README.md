@@ -1,73 +1,77 @@
-# GRIDLY PLUGIN
-### 1. What does this plugin do?
-This Plugin aids with syncing data between Unity and Gridly.
-This includes the uploading of screenshots generated from Unity.
-By using the path, you can obtain string data based on the
-target language.
+# Gridly Unity プラグイン
 
-### 2. Setup first columns in Gridly
-To be able to use this plugin, there are some
-initial steps you will have to complete within Gridly so that the
-plugin can refer to the correct columns. First you
-need to specify a **columnID**. You have to initially do this for the source language column. 
-Open the relevant Grid in Gridly and in the source language column header, select the option **Column properties**. 
+<p align="center">
+  <a href="README-en.md">English</a>
+  / 
+  <a href="README-ja.md">Japanese</a>
+</p>
+
+### 1. このプラグインでできること
+このプラグインは、Unity と Gridly 間のデータ同期を支援します。
+Unity で生成されたスクリーンショットのアップロード機能もあります。
+パスを使うことで、ターゲット言語の文字列データを取得できます。
+
+### 2. Gridly で最初のカラムをセットアップする
+このプラグインを使えるようにするためには、いくつかの初期化手順が Gridly 上で必要です。プラグインが正しいカラムを参照できるようにするためです。まず最初に、**columnID** を指定する必要があります。ソース言語カラムから指定してください。
+プラグインで使用する Grid を Gridly から開き、ソース言語カラムのヘッダから、**Column properties** を選んでください。
 
 <p align="center">
 <img src="resources/column_properties.png"/>
 </p>
 
-Change the columnID to the specific four
-character language code that applies to the text in the column,
-make sure that the capitalization is correctly entered. The two
-country letters should be capitalized:
+columnID をカラム名に記載されている4文字の言語コードに変更してください。
+大文字小文字も同様に変更してください。2文字の国コードは大文字です。
 
 <p align="center">
 <img src="resources/colId.png"/>
 </p>
 
-### 3. Connect Unity to Gridly
-### 3.1 Plugin install steps
-- Download the code from GitHub
-- Unzip the package
-- Copy the Gridly folder into your project assets folder
+### 3. Unity と Gridly を接続する
+### 3.1 プラグインのインストール手順
+- GitHub からコードを <a href="https://github.com/nozomu-matsui/gridly-unity-plugin/archive/refs/heads/master.zip">ダウンロードZIP</a> する
+- パッケージを解凍する
+- パッケージ内の Gridly フォルダーを Unity プロジェクトのアセットフォルダーにドラッグ＆ドロップする
 
-### 3.2 Setup in Unity
-First you need to open the Gridly settings window by going to:
-**Tools**->**Gridly**->**Setup Setting**  
+### 3.2 Unity でのセットアップ
+最初に Grildy 設定 ウィンドウ
+**Tools**->**Gridly**->**Setup Setting** から開いてください。
 <p align="center">
 <img src="resources/setup_setting.png"/>
 </p>
 
-Here you have to enter your API key and define the folder in which to store the screenshots that are generated.   
+API キーを入力してください。また、生成されたスクリーンショットを格納するフォルダーを指定してください。
 <p align="center">
 <img src="resources/setup_setting_mw.png"/>
 </p>
 
-You can find your API key in Gridly in the API quick start menu in the right pane:
+API キーは、Gridly の Grid 右ペインの API クイックスタートメニューから取得できます。
 
 <p align="center">
 <img src="resources/api_quick_start.png"/>
 </p>
 
-By default the plugin adds two views, but those are dummies, so feel free to delete or change their name and viewID.  
-You can add a new view by clicking on the plus icon
+このプラグインは、デフォルトで2つのビューを追加しますが、これはダミーです。削除しても改名しても構いません。
+プラスアイコンから新しいビューを追加できます。
 <p align="center">
 <img src="resources/add_new_view.png"/>
 </p>
 
-### 3.3 Maintain languages in the plugin
-* You can add a language by selecting a language from the list and clicking on the "Add" button. Adding a language to your project will then create a column for this language in Gridly
+### 3.3 プラグインを使って言語を管理する
+* リストボックスで言語を選択し "Add" ボタンをクリックすると、言語の追加ができます。
+Unity プロジェクト内で言語を追加すると、Gridly にもカラムが追加されます。
 <p align="center">
 <img src="resources/lang_selectLang.png"/>
 </p>
 
-* You can remove the language by clicking on the "X" button. On deleting a language, you will see two dialogs. The first will ask you whether you want to remove the language from Unity, and the second will ask you about deleting the language and the screenshot column related to this language in Gridly.
+* "X" ボタンをクリックすると、言語の削除ができます。言語を削除すると、2つのダイアログが表示されます。最初のダイアログでは、どの言語を Unity から削除するか、二つ目のダイアログでは、選択した言語と、その言語にひもづくスクリーンショットを Gridly から消すかを確認されます。
 <p align="center">
 <img src="resources/lang_deleteLang.png"/>
 </p>
 
-* You can select what type of font you would like to use by setting the "Font" or the "TmFont". TmFont is the Text Mesh Pro font.
-* You can select the column for storing images of the given language by clicking on the dropdown menu next to the "Screenshot column ID". If you don't have any, you can create one by clicking on the "Generate column" button, which creates a "files" type column in Gridly. Then select this column ID from the list. 
+* どのフォントを使用するか、 "Font" もしくは "TmFont" 設定から選択できます。TmFont は Text Mesh Pro フォントです。
+* "Screenshot column ID" の横にあるドロップダウンメニューをクリックすることで、言語ごとの画像を格納するカラムを選択できます。
+画像格納用カラムがない場合は、"Generate column" ボタンをクリックすることで、 Gridly に "files" タイプのカラムを作成できます。それから column ID を一覧から選択してください。
+
 
 <p align="center">
 <img src="resources/langScreenshotColId.png" alt="MarineGEO circle logo"/>
@@ -75,74 +79,77 @@ You can add a new view by clicking on the plus icon
 
   
 
-* You can change your project source language by clicking on the "Set source" button.
-* You can change the column ID of the language by clicking on the dropdown list next to the label "Column ID in Gridly"
-* You can change the language code of the given language by clicking on the "Select language" dropdown list.
+* プロジェクトのソース言語は、"Set source" ボタンをクリックすると変更できます。
+* 言語の column ID は、"Column ID in Gridly" ラベルの横のドロップダウンリストを選択すると変更できます。
+* 言語コードは、"Select language" ドロップダウンリストから変更できます。
 
-### 4. String editing
-### 4.1 String editor window
-Select **Tool**->**Gridly**->**String Editor** to open the string editor window
+### 4. 文字列の編集
+### 4.1 文字列エディターウィンドウ
+文字列エディターウィンドウを開くには、 **Tool**->**Gridly**->**String Editor** を選択します。
 <p align="center">
 <img src="resources/str_editor.png" />
 </p>
   
-**Path** : You can select the scene where the string is located. This needs to be set if you want to upload screenshots for that scene  
-**Delete** : Delete the record in Gridly and Unity  
-**Rename** : Rename the key in Gridly and Unity  
-**Create Record** : In its textbox you must specify the string ID, then hit the "Create Record" button to add it to the list  
-**Pull selected grid** : Download all data from the selected Grid  
-**Pull all grids** : Download all data from ALL Grids set up in the settings  
-**Push options** : You can select what data you would like to upload when pushing data to Gridly  
+**Path** : 文字列のあるシーンを選択できます。シーンのスクリーンショットをアップロードする場合に必要です。
+**Delete** : Gridly と Unity のレコードを削除します。
+**Rename** : Gridly と Unity のキーを改名します。  
+**Create Record** : string ID の指定をしてから"Create Record" ボタンを叩くと、レコードを生成します。
+**Pull selected grid** : 選択した Grid のすべてのデータをダウンロードします。
+**Pull all grids** : 設定されたすべての Grid のすべてのデータをダウンロードします。
+**Push options** : Gridly にデータをプッシュする際、どのデータをアップロードするか選べます。
 <p align="center">
 <img src="resources/str_push_options.png" />
 </p>    
 
-> **Source text** : Push only source strings into Gridly  
-**Source text and screenshots**: Push source strings and related source screenshots into Gridly  
-**Language screenshots** : If you select any languages, it will upload the screenshot into the column selected for that language
+> **Source text** : ソース言語文字列のみを Grildy にプッシュします。
+**Source text and screenshots**: ソース言語文字列と関連するソーススクリーンショットを Grildy にプッシュします。
+**Language screenshots** : なにか言語を選択すると、選択された言語のスクリーンショットをカラムにアップロードします。
 
-**Push only changed records** : Selecting this checkbox will only push strings that have been changed locally in Unity
+**Push only changed records** : ローカルの Unity で変更されたデータのみを Gridly にプッシュします。
 
-### 4.2 Sync data at runtime
-This feature makes it possible to get data from Gridly without having to rebuild the game
-You can use this component to get data.  
+### 4.2 実行時のデータ同期
+このコンポーネントは、ゲームのリビルドを行わずに Gridly からデータを取得します。
 <p align="center">
 <img src="resources/str_sync.png" />
 </p>    
-**Note** : Retrieving data from Gridly should be performed in a development/staging environment. Updating live/public objects is not recommended.
+**注意** : Gridly からのデータの取得は、development/staging 環境で行われるべきです。
+live/public オブジェクトの更新は、推奨しません。
 
-### 4.3 Translate text
-+ Use the following **void** to set your target language  
+### 4.3 テキストの翻訳
++ ターゲット言語の設定には、次の **void** を使います。
 <p align="center">
 <img src="resources/str_set_target.png" />
 </p>  
 
-+ Use the following **void** to get your text  
++ テキストの取得には、次の **void** を使います。
 <p align="center">
 <img src="resources/str_set_lang.png" />
 </p>    
 
-+ Use this component to translate UI text  
++ UI 翻訳テキストの設定には、次のコンポーネントを使います。
 <p align="center">
 <img src="resources/str_translate_text.png" />
 </p>    
 
-### 5. Example screenshot generator
-### 5.1 Setup script
-The ScreenshotTaker scene inside Gridly/ScreenshotSceneUtility features a script where you can define the languages you want to use during the screenshot creation and the number of seconds to wait between a scene change.  
+### 5. スクリーンショットジェネレーターの例
+### 5.1 スクリプトのセットアップ
+Gridly/ScreenshotSceneUtility 内の ScreenshotTaker シーンは、スクリーンショットの生成中に選択する言語や、スクリーンショット生成の長さ、シーン変更後のスクリーンショット撮影まで何秒待つかなどを定義できます。
 <p align="center">
 <img src="resources/st_script.png" />
 </p>    
 
-> You can add a language by selecting a language from the dropdown list and clicking on the "Add" button. You can remove a language by selecting it and clicking on "Remove". The languages added can be found in the "Added languages" list.
+> ドロップダウンリストから言語を選択し、"Add" ボタンをクリックすることで、言語を追加できます。
+同様に "Remove" から削除ができます。追加された言語は "Added languages" 一覧に表示されます。
 
-During the screenshot generation, all the scenes added to the "Scenes in Build" list will be used. You can add your scenes by going to **File**->**Build settings**  
+スクリーンショットの生成中は、すべてのシーンは "Scenes in Build" 一覧に追加されます。
+**File**->**Build settings** からシーンの追加ができます。
 <p align="center">
 <img src="resources/st_build_settings.png" />
 </p>    
 
-The screenshots will be saved to the path defined in the Gridly setup menu. The script creates subfolders for each language.
-You can start the screenshot generation process by starting the scene with the play button.  
+スクリーンショットは、Gridly 設定メニューで入力したフォルダパスに保存されます。
+スクリプトによって、各言語のサブフォルダが作成されます。
+スクリーンショットの生成手順は、再生ボタンからシーンを再生することで開始されます。
 <p align="center">
 <img src="resources/st_play.png" />
 </p>    
