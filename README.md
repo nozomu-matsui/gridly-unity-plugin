@@ -1,8 +1,9 @@
 # Gridly Unity プラグイン
 
 <p align="center">
-  <a href="README-en.md">English</a> •
-  <a href="README-ja.md">Japanese</a> •  
+  <a href="README-en.md">English</a>
+  / 
+  <a href="README-ja.md">Japanese</a>
 </p>
 
 ### 1. このプラグインでできること
@@ -27,7 +28,7 @@ columnID をカラム名に記載されている4文字の言語コードに変�
 
 ### 3. Unity と Gridly を接続する
 ### 3.1 プラグインのインストール手順
-- GitHub からコードをダウンロードZIPする
+- GitHub からコードを <a href="https://github.com/nozomu-matsui/gridly-unity-plugin/archive/refs/heads/master.zip">ダウンロードZIP</a> する
 - パッケージを解凍する
 - パッケージ内の Gridly フォルダーを Unity プロジェクトのアセットフォルダーにドラッグ＆ドロップする
 

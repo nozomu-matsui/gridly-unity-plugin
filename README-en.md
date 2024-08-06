@@ -1,8 +1,9 @@
 # GRIDLY PLUGIN
 
 <p align="center">
-  <a href="README-en.md">English</a> •
-  <a href="README-ja.md">日本語 (Japanese)</a> •  
+  <a href="README-en.md">English</a>
+  /
+  <a href="README-ja.md">日本語 (Japanese)</a>
 </p>
 
 
