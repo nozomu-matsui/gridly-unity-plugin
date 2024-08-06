@@ -81,13 +81,13 @@ namespace Gridly.Internal
 
             GUILayout.Space(5);
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Key");
+            GUILayout.Label("キー");
             EditorGUI.BeginChangeCheck();
             try
             {
                 translator.key = popupData.keyArr[EditorGUILayout.Popup(popupData.indexKey, popupData.keyArr)];
             }
-            catch { GUILayout.Label("can't find key"); }
+            catch { GUILayout.Label("キーがみつかりません"); }
             if (EditorGUI.EndChangeCheck())
             {
                 EditorUtility.SetDirty(translator);
@@ -106,7 +106,7 @@ namespace Gridly.Internal
                 if (chosenColum != null)
                 {
                     chosenColum.text = GUILayout.TextArea(chosenColum.text);
-                    if(GUILayout.Button(new GUIContent() {text = "Export" , tooltip = "Export text to Girdly" }, GUILayout.MinWidth(60)))
+                    if(GUILayout.Button(new GUIContent() {text = "エクスポート" , tooltip = "テキストを Gridly にエクスポート" }, GUILayout.MinWidth(60)))
                     {
                         GridlyFunctionEditor.editor.UpdateRecordLang(popupData.chosenRecord, popupData.grid.choesenViewID, UserData.singleton.mainLangEditor);
                     }

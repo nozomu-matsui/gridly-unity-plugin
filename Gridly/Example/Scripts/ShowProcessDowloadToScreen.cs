@@ -18,7 +18,7 @@ public class ShowProcessDowloadToScreen : MonoBehaviour
         numberOfProces.text = sync.processDone + "/" + sync.processNumberTotal;
         if (!isFinish)
             process.text = ((int)(sync.process * 100)).ToString() + "%";
-        else process.text = "Finish";
+        else process.text = "完了";
         image.fillAmount = sync.process;
     }
 
