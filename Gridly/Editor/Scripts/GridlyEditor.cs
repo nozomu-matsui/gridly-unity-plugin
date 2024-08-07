@@ -194,7 +194,7 @@ namespace Gridly.Internal
 
             GUILayout.BeginHorizontal();
             OnGUI_ToggleEnumBig("Gridly セットアップ", ref mCurrentViewMode, eViewMode.Setting, null, null);
-            OnGUI_ToggleEnumBig("言語", ref mCurrentViewMode, eViewMode.Languages, null, null);
+            OnGUI_ToggleEnumBig("言語一覧", ref mCurrentViewMode, eViewMode.Languages, null, null);
 
             GUILayout.EndHorizontal();
 
@@ -225,7 +225,7 @@ namespace Gridly.Internal
 
 
 
-            GUILayout.Label("API キーを入力してください", EditorStyles.boldLabel);
+            GUILayout.Label("API キー", EditorStyles.boldLabel);
 
             EditorGUI.BeginChangeCheck();
             string _APIkey = EditorGUILayout.PasswordField(UserData.singleton.keyAPI);
@@ -236,7 +236,7 @@ namespace Gridly.Internal
 
             }
 
-            GUILayout.Label("スクリーンショット格納フォルダーを入力してください", EditorStyles.boldLabel);
+            GUILayout.Label("画像格納用フォルダーパス", EditorStyles.boldLabel);
 
             EditorGUI.BeginChangeCheck();
             string screenshotPath = EditorGUILayout.TextField(UserData.singleton.screenshotPath);
@@ -251,7 +251,7 @@ namespace Gridly.Internal
 
             #region viewID
             GUILayout.Space(10);
-            GUILayout.Label("ViewID を入力してください", EditorStyles.boldLabel);
+            GUILayout.Label("ViewID", EditorStyles.boldLabel);
             m_Scroll = GUILayout.BeginScrollView(m_Scroll, TextStyle, GUILayout.Height(150));
 
             Grid removeGrid = null;
@@ -379,7 +379,7 @@ namespace Gridly.Internal
                     EditorGUI.BeginChangeCheck();
                     string name = langSupport.name;
                     int selectedIndexOfColumn = ArrayUtility.IndexOf(listGridlyColumnIds, langSupport.name);
-                    selectedIndexOfColumn = EditorGUILayout.Popup(new GUIContent("Column ID in Gridly", "この言語の columnId を Gridly から選択してください。"), selectedIndexOfColumn, listGridlyColumnIds);
+                    selectedIndexOfColumn = EditorGUILayout.Popup(new GUIContent("カラムID", "この言語の columnId を選んでください。"), selectedIndexOfColumn, listGridlyColumnIds);
 
                     if (GUILayout.Button(new GUIContent() { text = "ソース言語に設定", tooltip = "この言語をエディターでのメイン言語にする" }))
                     {
@@ -391,7 +391,7 @@ namespace Gridly.Internal
                         UserData.singleton.setDirty();
                     }
 
-                    langSupport.languagesSuport = (Languages)EditorGUILayout.EnumPopup("言語選択", langSupport.languagesSuport);
+                    langSupport.languagesSuport = (Languages)EditorGUILayout.EnumPopup("選択言語", langSupport.languagesSuport);
 
                     if (EditorGUI.EndChangeCheck() && !string.IsNullOrEmpty(name))
                     {
@@ -429,10 +429,10 @@ namespace Gridly.Internal
                     {
                         selectedIndex = ArrayUtility.IndexOf(listGridlyColumnIds, langSupport.screenshotColumnId);
                     }
-                    columnIdSelectedIndex = EditorGUILayout.Popup("スクリーンショットカラムID", selectedIndex, listGridlyColumnIds);
+                    columnIdSelectedIndex = EditorGUILayout.Popup("画像格納用カラムID", selectedIndex, listGridlyColumnIds);
                     columnIdSelect = listGridlyColumnIds[columnIdSelectedIndex];
 
-                    if (GUILayout.Button(new GUIContent() { text = "カラムを生成", tooltip = "スクリーンショット格納用カラムを生成" }))
+                    if (GUILayout.Button(new GUIContent() { text = "カラムを作成", tooltip = "画像格納用カラムを作成" }))
                     {
                         viewID = "";
                         foreach (var view in Project.singleton.grids)
