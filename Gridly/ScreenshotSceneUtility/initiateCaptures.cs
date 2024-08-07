@@ -90,13 +90,13 @@ public class initiateCaptures : MonoBehaviour
         string levelname = SceneManager.GetActiveScene().name;
 
         filepath = Path.GetDirectoryName(filepath);
-        string screenshotDirPath = screenshotPath + "\\" + lang;
+        string screenshotDirPath = screenshotPath + "/" + lang;
 
         if (!Directory.Exists(screenshotDirPath))
         {
             Directory.CreateDirectory(screenshotDirPath);
         }
-        string filename = screenshotDirPath + "\\" + levelname + ".png";
+        string filename = screenshotDirPath + "/" + levelname + ".png";
         UnityEngine.ScreenCapture.CaptureScreenshot(filename, superSize);
 
     }
@@ -167,7 +167,7 @@ public class LookAtPointEditor : Editor
         EditorGUILayout.PropertyField(WaitBetweenScenes);
         EditorGUILayout.BeginHorizontal();
         Project.singleton.LastSelectedLangIndexToAdd = EditorGUILayout.Popup(Project.singleton.LastSelectedLangIndexToAdd, langs.ToArray());
-        if (GUILayout.Button("Add", GUILayout.MinWidth(100), GUILayout.MaxWidth(200)))
+        if (GUILayout.Button("追加", GUILayout.MinWidth(100), GUILayout.MaxWidth(200)))
         {
             Project.singleton.LangsToTakeScreenshotList.Add(langs[Project.singleton.LastSelectedLangIndexToAdd]);
         }
@@ -175,7 +175,7 @@ public class LookAtPointEditor : Editor
 
         EditorGUILayout.BeginHorizontal();
         Project.singleton.LastSelectedLangIndexToRemove = EditorGUILayout.Popup(Project.singleton.LastSelectedLangIndexToRemove, Project.singleton.LangsToTakeScreenshotList.ToArray());
-        if (GUILayout.Button("Remove", GUILayout.MinWidth(100), GUILayout.MaxWidth(200)))
+        if (GUILayout.Button("削除", GUILayout.MinWidth(100), GUILayout.MaxWidth(200)))
         {
             Project.singleton.LangsToTakeScreenshotList.Remove(Project.singleton.LangsToTakeScreenshotList[Project.singleton.LastSelectedLangIndexToRemove]);
         }
@@ -183,7 +183,7 @@ public class LookAtPointEditor : Editor
 
 
 
-        EditorGUILayout.LabelField("Added languages");
+        EditorGUILayout.LabelField("追加された言語一覧");
         foreach (string lang in Project.singleton.LangsToTakeScreenshotList)
         {
             EditorGUILayout.LabelField(lang);
