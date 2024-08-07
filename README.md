@@ -123,7 +123,7 @@ live/public オブジェクトの更新は、推奨しません。
 <img src="resources/str_set_target.png" />
 </p>  
 
-+ テキストの取得には、次の **void** を使います。
++ テキストの取得には、次の **string** を使います。
 <p align="center">
 <img src="resources/str_set_lang.png" />
 </p>    
@@ -134,24 +134,27 @@ live/public オブジェクトの更新は、推奨しません。
 </p>    
 
 ### 5. スクリーンショットジェネレーター
-### 5.1 スクリプトのセットアップ
-Gridly/ScreenshotSceneUtility 内の ScreenshotTaker シーンは、スクリーンショットの生成中に選択する言語や、スクリーンショット生成の長さ、シーン変更後のスクリーンショット撮影まで何秒待つかなどを定義できます。
+### 5.1 ScreenshotTaker のセットアップ
+Gridly/ScreenshotSceneUtility フォルダにある ScreenshotTaker シーンは、
+* スクリーンショットを撮影する言語
+* シーンが切り替わった何秒後に、スクリーンショットを撮影する
+などを定義できます。
+
 <p align="center">
 <img src="resources/st_script.png" />
 </p>    
 
-ドロップダウンリストから言語を選択し、"追加" ボタンをクリックすることで、言語を追加できます。
+ドロップダウンリストから言語を選択し、"追加" で言語を追加できます。
 同様に "削除" から削除ができます。追加された言語は "追加された言語一覧" に表示されます。
 
-スクリーンショットの生成中は、すべてのシーンは "Scenes in Build" 一覧に追加されます。
-**File**->**Build settings** からシーンの追加ができます。
+"Scenes in Build" 一覧に追加されているシーンにて、スクリーンショットを撮影します。
+Unity メニューの **File**->**Build settings** から、Unity で開いているシーンが "Scenes in Build" に追加できます。
 <p align="center">
 <img src="resources/st_build_settings.png" />
 </p>    
 
-スクリーンショットは、Gridly 設定メニューで入力したフォルダパスに保存されます。
-スクリプトによって、各言語のサブフォルダが作成されます。
-スクリーンショットの生成手順は、再生ボタンからシーンを再生することで開始されます。
+スクリーンショットは、Gridly 設定メニューで指定したフォルダパスに、言語別のサブフォルダが作成され、保存されます。
+スクリーンショットは、ScreenshotTaker シーンを再生することでボタンからシーンを再生すると撮影が開始されます。
 <p align="center">
 <img src="resources/st_play.png" />
 </p>    
