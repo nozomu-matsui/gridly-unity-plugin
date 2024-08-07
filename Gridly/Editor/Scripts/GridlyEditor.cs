@@ -381,7 +381,7 @@ namespace Gridly.Internal
                     int selectedIndexOfColumn = ArrayUtility.IndexOf(listGridlyColumnIds, langSupport.name);
                     selectedIndexOfColumn = EditorGUILayout.Popup(new GUIContent("Column ID in Gridly", "この言語の columnId を Gridly から選択してください。"), selectedIndexOfColumn, listGridlyColumnIds);
 
-                    if (GUILayout.Button(new GUIContent() { text = "ソース言語を設定", tooltip = "この言語をエディターでのメイン言語にする" }))
+                    if (GUILayout.Button(new GUIContent() { text = "ソース言語に設定", tooltip = "この言語をエディターでのメイン言語にする" }))
                     {
                         TermEditor.Refesh();
                         TermEditor.RepaintThis();
